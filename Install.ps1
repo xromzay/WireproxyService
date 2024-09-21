@@ -20,6 +20,7 @@ add-content -path .\wireproxy.ps1 '-WindowStyle Hidden -args $prefix'
 
 $trigger = New-JobTrigger -AtStartup -RandomDelay 00:00:10
 Register-ScheduledJob -Trigger $trigger -FilePath "$FolderPath\wireproxy.ps1" -Name WireProxyStartUp
+Get-ScheduledJobOption -Name "WireProxyStartUp" | Set-ScheduledJobOption -ContinueIfGoingOnBattery:$true -StartIfOnBattery:$true -RequireNetwork:$false
 
 
 
